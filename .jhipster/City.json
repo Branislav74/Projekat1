@@ -9,7 +9,7 @@
             "fieldValidateRules": []
         },
         {
-            "fieldName": "postCode",
+            "fieldName": "zipCode",
             "fieldType": "String",
             "fieldValidateRules": []
         },

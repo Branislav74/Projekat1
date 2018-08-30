@@ -22,8 +22,8 @@ public class City implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "post_code")
-    private String postCode;
+    @Column(name = "zip_code")
+    private String zipCode;
 
     @Column(name = "country")
     private String country;
@@ -50,17 +50,17 @@ public class City implements Serializable {
         this.name = name;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public City postCode(String postCode) {
-        this.postCode = postCode;
+    public City zipCode(String zipCode) {
+        this.zipCode = zipCode;
         return this;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getCountry() {
@@ -102,7 +102,7 @@ public class City implements Serializable {
         return "City{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", postCode='" + getPostCode() + "'" +
+            ", zipCode='" + getZipCode() + "'" +
             ", country='" + getCountry() + "'" +
             "}";
     }

@@ -42,8 +42,8 @@ public class CityResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_POST_CODE = "AAAAAAAAAA";
-    private static final String UPDATED_POST_CODE = "BBBBBBBBBB";
+    private static final String DEFAULT_ZIP_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_ZIP_CODE = "BBBBBBBBBB";
 
     private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
     private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
@@ -88,7 +88,7 @@ public class CityResourceIntTest {
     public static City createEntity(EntityManager em) {
         City city = new City()
             .name(DEFAULT_NAME)
-            .postCode(DEFAULT_POST_CODE)
+            .zipCode(DEFAULT_ZIP_CODE)
             .country(DEFAULT_COUNTRY);
         return city;
     }
@@ -114,7 +114,7 @@ public class CityResourceIntTest {
         assertThat(cityList).hasSize(databaseSizeBeforeCreate + 1);
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testCity.getPostCode()).isEqualTo(DEFAULT_POST_CODE);
+        assertThat(testCity.getZipCode()).isEqualTo(DEFAULT_ZIP_CODE);
         assertThat(testCity.getCountry()).isEqualTo(DEFAULT_COUNTRY);
     }
 
@@ -149,7 +149,7 @@ public class CityResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(city.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].postCode").value(hasItem(DEFAULT_POST_CODE.toString())))
+            .andExpect(jsonPath("$.[*].zipCode").value(hasItem(DEFAULT_ZIP_CODE.toString())))
             .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())));
     }
     
@@ -166,7 +166,7 @@ public class CityResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(city.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.postCode").value(DEFAULT_POST_CODE.toString()))
+            .andExpect(jsonPath("$.zipCode").value(DEFAULT_ZIP_CODE.toString()))
             .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()));
     }
     @Test
@@ -191,7 +191,7 @@ public class CityResourceIntTest {
         em.detach(updatedCity);
         updatedCity
             .name(UPDATED_NAME)
-            .postCode(UPDATED_POST_CODE)
+            .zipCode(UPDATED_ZIP_CODE)
             .country(UPDATED_COUNTRY);
 
         restCityMockMvc.perform(put("/api/cities")
@@ -204,7 +204,7 @@ public class CityResourceIntTest {
         assertThat(cityList).hasSize(databaseSizeBeforeUpdate);
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testCity.getPostCode()).isEqualTo(UPDATED_POST_CODE);
+        assertThat(testCity.getZipCode()).isEqualTo(UPDATED_ZIP_CODE);
         assertThat(testCity.getCountry()).isEqualTo(UPDATED_COUNTRY);
     }
 

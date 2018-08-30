@@ -26,7 +26,15 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="amount" type="double">
+            <column name="available_amount" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="article_number" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="price" type="double">
                 <constraints nullable="true" />
             </column>
 

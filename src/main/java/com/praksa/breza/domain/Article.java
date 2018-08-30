@@ -2,6 +2,7 @@ package com.praksa.breza.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -22,8 +23,16 @@ public class Article implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "amount")
-    private Double amount;
+    @Column(name = "available_amount")
+    private Double availableAmount;
+
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "article_number", length = 20, nullable = false)
+    private String articleNumber;
+
+    @Column(name = "price")
+    private Double price;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -47,17 +56,43 @@ public class Article implements Serializable {
         this.name = name;
     }
 
-    public Double getAmount() {
-        return amount;
+    public Double getAvailableAmount() {
+        return availableAmount;
     }
 
-    public Article amount(Double amount) {
-        this.amount = amount;
+    public Article availableAmount(Double availableAmount) {
+        this.availableAmount = availableAmount;
         return this;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setAvailableAmount(Double availableAmount) {
+        this.availableAmount = availableAmount;
+    }
+
+    public String getArticleNumber() {
+        return articleNumber;
+    }
+
+    public Article articleNumber(String articleNumber) {
+        this.articleNumber = articleNumber;
+        return this;
+    }
+
+    public void setArticleNumber(String articleNumber) {
+        this.articleNumber = articleNumber;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Article price(Double price) {
+        this.price = price;
+        return this;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -86,7 +121,9 @@ public class Article implements Serializable {
         return "Article{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", amount=" + getAmount() +
+            ", availableAmount=" + getAvailableAmount() +
+            ", articleNumber='" + getArticleNumber() + "'" +
+            ", price=" + getPrice() +
             "}";
     }
 }

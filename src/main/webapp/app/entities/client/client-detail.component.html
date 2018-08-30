@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="client">
+            <h2><span jhiTranslate="brezaApp.client.detail.title">Client</span> {{client.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="brezaApp.client.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{client.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="brezaApp.client.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{client.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="brezaApp.client.email">Email</span></dt>
+                <dd>
+                    <span>{{client.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="brezaApp.client.city">City</span></dt>
+                <dd>
+                    <span>{{client.city}}</span>
+                </dd>
+                <dt><span jhiTranslate="brezaApp.client.cit">Cit</span></dt>
+                <dd>
+                    <div *ngIf="client.cit">
+                        <a [routerLink]="['/city', client.cit?.id, 'view']">{{client.cit?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/client', client.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

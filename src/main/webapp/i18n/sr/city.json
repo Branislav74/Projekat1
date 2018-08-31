@@ -3,7 +3,7 @@
     "brezaApp": {
         "city" : {
             "home": {
-                "title": "Cities",
+                "title": "Gradovi",
                 "createLabel": "Kreiraj novi City",
                 "createOrEditLabel": "Kreirajte ili izmenite City"
             },
@@ -16,8 +16,8 @@
             "detail": {
                 "title": "City"
             },
-            "name": "Name",
-            "zipCode": "Zip Code"
+            "name": "Ime",
+            "zipCode": "Postanski broj"
         }
     }
 }

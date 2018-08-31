@@ -20,14 +20,15 @@
             "fieldType": "String",
             "fieldValidateRules": []
         },
-        {
-            "fieldName": "email",
-            "fieldType": "String"
-        },
+        
         {
             "fieldName": "phone",
             "fieldType": "String",
             "fieldValidateRules": []
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180830130458",

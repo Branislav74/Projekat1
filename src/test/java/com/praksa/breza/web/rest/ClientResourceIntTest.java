@@ -39,17 +39,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = BrezaApp.class)
 public class ClientResourceIntTest {
 
-    private static final String DEFAULT_FIRST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_FIRST_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
+    private static final String DEFAULT_ADDRESS = "AAAAAAAAAA";
+    private static final String UPDATED_ADDRESS = "BBBBBBBBBB";
+
+    private static final String DEFAULT_PHONE = "AAAAAAAAAA";
+    private static final String UPDATED_PHONE = "BBBBBBBBBB";
 
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
-
-    private static final String DEFAULT_CITY = "AAAAAAAAAA";
-    private static final String UPDATED_CITY = "BBBBBBBBBB";
 
     @Autowired
     private ClientRepository clientRepository;
@@ -90,10 +90,10 @@ public class ClientResourceIntTest {
      */
     public static Client createEntity(EntityManager em) {
         Client client = new Client()
-            .firstName(DEFAULT_FIRST_NAME)
-            .lastName(DEFAULT_LAST_NAME)
-            .email(DEFAULT_EMAIL)
-            .city(DEFAULT_CITY);
+            .name(DEFAULT_NAME)
+            .address(DEFAULT_ADDRESS)
+            .phone(DEFAULT_PHONE)
+            .email(DEFAULT_EMAIL);
         return client;
     }
 
@@ -117,10 +117,10 @@ public class ClientResourceIntTest {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeCreate + 1);
         Client testClient = clientList.get(clientList.size() - 1);
-        assertThat(testClient.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
-        assertThat(testClient.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
+        assertThat(testClient.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testClient.getAddress()).isEqualTo(DEFAULT_ADDRESS);
+        assertThat(testClient.getPhone()).isEqualTo(DEFAULT_PHONE);
         assertThat(testClient.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testClient.getCity()).isEqualTo(DEFAULT_CITY);
     }
 
     @Test
@@ -153,10 +153,10 @@ public class ClientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(client.getId().intValue())))
-            .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
-            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
-            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-            .andExpect(jsonPath("$.[*].city").value(hasItem(DEFAULT_CITY.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].address").value(hasItem(DEFAULT_ADDRESS.toString())))
+            .andExpect(jsonPath("$.[*].phone").value(hasItem(DEFAULT_PHONE.toString())))
+            .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
     }
     
 
@@ -171,10 +171,10 @@ public class ClientResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(client.getId().intValue()))
-            .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
-            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
-            .andExpect(jsonPath("$.city").value(DEFAULT_CITY.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.address").value(DEFAULT_ADDRESS.toString()))
+            .andExpect(jsonPath("$.phone").value(DEFAULT_PHONE.toString()))
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
     }
     @Test
     @Transactional
@@ -197,10 +197,10 @@ public class ClientResourceIntTest {
         // Disconnect from session so that the updates on updatedClient are not directly saved in db
         em.detach(updatedClient);
         updatedClient
-            .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .email(UPDATED_EMAIL)
-            .city(UPDATED_CITY);
+            .name(UPDATED_NAME)
+            .address(UPDATED_ADDRESS)
+            .phone(UPDATED_PHONE)
+            .email(UPDATED_EMAIL);
 
         restClientMockMvc.perform(put("/api/clients")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -211,10 +211,10 @@ public class ClientResourceIntTest {
         List<Client> clientList = clientRepository.findAll();
         assertThat(clientList).hasSize(databaseSizeBeforeUpdate);
         Client testClient = clientList.get(clientList.size() - 1);
-        assertThat(testClient.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
-        assertThat(testClient.getLastName()).isEqualTo(UPDATED_LAST_NAME);
+        assertThat(testClient.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testClient.getAddress()).isEqualTo(UPDATED_ADDRESS);
+        assertThat(testClient.getPhone()).isEqualTo(UPDATED_PHONE);
         assertThat(testClient.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testClient.getCity()).isEqualTo(UPDATED_CITY);
     }
 
     @Test

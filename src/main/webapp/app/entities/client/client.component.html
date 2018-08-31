@@ -15,24 +15,24 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="brezaApp.client.firstName">First Name</span></th>
-            <th><span jhiTranslate="brezaApp.client.lastName">Last Name</span></th>
+            <th><span jhiTranslate="brezaApp.client.name">Name</span></th>
+            <th><span jhiTranslate="brezaApp.client.address">Address</span></th>
+            <th><span jhiTranslate="brezaApp.client.phone">Phone</span></th>
             <th><span jhiTranslate="brezaApp.client.email">Email</span></th>
             <th><span jhiTranslate="brezaApp.client.city">City</span></th>
-            <th><span jhiTranslate="brezaApp.client.cit">Cit</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let client of clients ;trackBy: trackId">
                 <td><a [routerLink]="['/client', client.id, 'view' ]">{{client.id}}</a></td>
-                <td>{{client.firstName}}</td>
-                <td>{{client.lastName}}</td>
+                <td>{{client.name}}</td>
+                <td>{{client.address}}</td>
+                <td>{{client.phone}}</td>
                 <td>{{client.email}}</td>
-                <td>{{client.city}}</td>
                 <td>
-                    <div *ngIf="client.cit">
-                        <a [routerLink]="['../city', client.cit?.id, 'view' ]" >{{client.cit?.name}}</a>
+                    <div *ngIf="client.city">
+                        <a [routerLink]="['../city', client.city?.id, 'view' ]" >{{client.city?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

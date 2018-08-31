@@ -16,11 +16,11 @@
             "detail": {
                 "title": "Client"
             },
-            "firstName": "First Name",
-            "lastName": "Last Name",
+            "name": "Name",
+            "address": "Address",
+            "phone": "Phone",
             "email": "Email",
-            "city": "City",
-            "cit": "Cit"
+            "city": "City"
         }
     }
 }

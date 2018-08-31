@@ -2,20 +2,20 @@ import { ICity } from 'app/shared/model//city.model';
 
 export interface IClient {
     id?: number;
-    firstName?: string;
-    lastName?: string;
+    name?: string;
+    address?: string;
+    phone?: string;
     email?: string;
-    city?: string;
-    cit?: ICity;
+    city?: ICity;
 }
 
 export class Client implements IClient {
     constructor(
         public id?: number,
-        public firstName?: string,
-        public lastName?: string,
+        public name?: string,
+        public address?: string,
+        public phone?: string,
         public email?: string,
-        public city?: string,
-        public cit?: ICity
+        public city?: ICity
     ) {}
 }

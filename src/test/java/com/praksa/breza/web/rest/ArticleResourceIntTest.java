@@ -42,14 +42,14 @@ public class ArticleResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final Double DEFAULT_AVAILABLE_AMOUNT = 1D;
-    private static final Double UPDATED_AVAILABLE_AMOUNT = 2D;
-
     private static final String DEFAULT_ARTICLE_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_ARTICLE_NUMBER = "BBBBBBBBBB";
 
     private static final Double DEFAULT_PRICE = 1D;
     private static final Double UPDATED_PRICE = 2D;
+
+    private static final Double DEFAULT_AVAILABLE_AMOUNT = 1D;
+    private static final Double UPDATED_AVAILABLE_AMOUNT = 2D;
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -91,9 +91,9 @@ public class ArticleResourceIntTest {
     public static Article createEntity(EntityManager em) {
         Article article = new Article()
             .name(DEFAULT_NAME)
-            .availableAmount(DEFAULT_AVAILABLE_AMOUNT)
             .articleNumber(DEFAULT_ARTICLE_NUMBER)
-            .price(DEFAULT_PRICE);
+            .price(DEFAULT_PRICE)
+            .availableAmount(DEFAULT_AVAILABLE_AMOUNT);
         return article;
     }
 
@@ -118,9 +118,9 @@ public class ArticleResourceIntTest {
         assertThat(articleList).hasSize(databaseSizeBeforeCreate + 1);
         Article testArticle = articleList.get(articleList.size() - 1);
         assertThat(testArticle.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testArticle.getAvailableAmount()).isEqualTo(DEFAULT_AVAILABLE_AMOUNT);
         assertThat(testArticle.getArticleNumber()).isEqualTo(DEFAULT_ARTICLE_NUMBER);
         assertThat(testArticle.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testArticle.getAvailableAmount()).isEqualTo(DEFAULT_AVAILABLE_AMOUNT);
     }
 
     @Test
@@ -172,9 +172,9 @@ public class ArticleResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(article.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].availableAmount").value(hasItem(DEFAULT_AVAILABLE_AMOUNT.doubleValue())))
             .andExpect(jsonPath("$.[*].articleNumber").value(hasItem(DEFAULT_ARTICLE_NUMBER.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+            .andExpect(jsonPath("$.[*].availableAmount").value(hasItem(DEFAULT_AVAILABLE_AMOUNT.doubleValue())));
     }
     
 
@@ -190,9 +190,9 @@ public class ArticleResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(article.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.availableAmount").value(DEFAULT_AVAILABLE_AMOUNT.doubleValue()))
             .andExpect(jsonPath("$.articleNumber").value(DEFAULT_ARTICLE_NUMBER.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.availableAmount").value(DEFAULT_AVAILABLE_AMOUNT.doubleValue()));
     }
     @Test
     @Transactional
@@ -216,9 +216,9 @@ public class ArticleResourceIntTest {
         em.detach(updatedArticle);
         updatedArticle
             .name(UPDATED_NAME)
-            .availableAmount(UPDATED_AVAILABLE_AMOUNT)
             .articleNumber(UPDATED_ARTICLE_NUMBER)
-            .price(UPDATED_PRICE);
+            .price(UPDATED_PRICE)
+            .availableAmount(UPDATED_AVAILABLE_AMOUNT);
 
         restArticleMockMvc.perform(put("/api/articles")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -230,9 +230,9 @@ public class ArticleResourceIntTest {
         assertThat(articleList).hasSize(databaseSizeBeforeUpdate);
         Article testArticle = articleList.get(articleList.size() - 1);
         assertThat(testArticle.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testArticle.getAvailableAmount()).isEqualTo(UPDATED_AVAILABLE_AMOUNT);
         assertThat(testArticle.getArticleNumber()).isEqualTo(UPDATED_ARTICLE_NUMBER);
         assertThat(testArticle.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testArticle.getAvailableAmount()).isEqualTo(UPDATED_AVAILABLE_AMOUNT);
     }
 
     @Test

@@ -15,11 +15,6 @@
                         [(ngModel)]="article.name" />
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="brezaApp.article.availableAmount" for="field_availableAmount">Available Amount</label>
-                    <input type="number" class="form-control" name="availableAmount" id="field_availableAmount"
-                        [(ngModel)]="article.availableAmount" />
-                </div>
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="brezaApp.article.articleNumber" for="field_articleNumber">Article Number</label>
                     <input type="text" class="form-control" name="articleNumber" id="field_articleNumber"
                         [(ngModel)]="article.articleNumber" required minlength="1" maxlength="20"/>
@@ -42,6 +37,11 @@
                     <label class="form-control-label" jhiTranslate="brezaApp.article.price" for="field_price">Price</label>
                     <input type="number" class="form-control" name="price" id="field_price"
                         [(ngModel)]="article.price" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="brezaApp.article.availableAmount" for="field_availableAmount">Available Amount</label>
+                    <input type="number" class="form-control" name="availableAmount" id="field_availableAmount"
+                        [(ngModel)]="article.availableAmount" />
                 </div>
 
             </div>

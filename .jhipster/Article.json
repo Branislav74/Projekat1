@@ -9,11 +9,6 @@
             "fieldValidateRules": []
         },
         {
-            "fieldName": "availableAmount",
-            "fieldType": "Double",
-            "fieldValidateRules": []
-        },
-        {
             "fieldName": "articleNumber",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -28,7 +23,13 @@
             "fieldName": "price",
             "fieldType": "Double",
             "fieldValidateRules": []
+        },
+        {
+            "fieldName": "availableAmount",
+            "fieldType": "Double",
+            "fieldValidateRules": []
         }
+       
     ],
     "changelogDate": "20180830084841",
     "dto": "no",

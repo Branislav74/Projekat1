@@ -23,9 +23,6 @@ public class Article implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "available_amount")
-    private Double availableAmount;
-
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "article_number", length = 20, nullable = false)
@@ -33,6 +30,9 @@ public class Article implements Serializable {
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "available_amount")
+    private Double availableAmount;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -54,19 +54,6 @@ public class Article implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Double getAvailableAmount() {
-        return availableAmount;
-    }
-
-    public Article availableAmount(Double availableAmount) {
-        this.availableAmount = availableAmount;
-        return this;
-    }
-
-    public void setAvailableAmount(Double availableAmount) {
-        this.availableAmount = availableAmount;
     }
 
     public String getArticleNumber() {
@@ -93,6 +80,19 @@ public class Article implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Double getAvailableAmount() {
+        return availableAmount;
+    }
+
+    public Article availableAmount(Double availableAmount) {
+        this.availableAmount = availableAmount;
+        return this;
+    }
+
+    public void setAvailableAmount(Double availableAmount) {
+        this.availableAmount = availableAmount;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -121,9 +121,9 @@ public class Article implements Serializable {
         return "Article{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", availableAmount=" + getAvailableAmount() +
             ", articleNumber='" + getArticleNumber() + "'" +
             ", price=" + getPrice() +
+            ", availableAmount=" + getAvailableAmount() +
             "}";
     }
 }

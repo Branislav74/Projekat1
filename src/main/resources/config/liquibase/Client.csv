@@ -1,0 +1,11 @@
+id;name;address;phone;email;city_id
+1;Milan Milanovic;Jurija Gagarina 115;065-2356458;mmil@gmail.com;1
+2;Marko Markovic;Gandijeva 25;065-5687458;mmar@gmail.com;1
+3;Ana Anic;Radnicka 5;064-2227458;aani@gmail.com;2
+4;Mika Mikic;Savska 4;063-5255458;mmik@gmail.com;3
+5;Zika Zikic;Borska 5;065-1122458;zzik@gmail.com;2
+6;Bora Boric;7. juli 5;062-5222458;bbor@gmail.com;4
+7;Sanja Sankovic;Visnjicka 27;064-5611158;ssan@gmail.com;4
+8;Tanja Tanjic;Balkanska 8;064-5225558;ttanj@gmail.com;2
+9;Iva Ivic;Skadarska 89;064-4437458;iivi@gmail.com;4
+10;Sara Saric;Ibarska 69;065-7787458;ssar@gmail.com;2

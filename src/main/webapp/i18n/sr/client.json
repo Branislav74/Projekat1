@@ -3,7 +3,7 @@
     "brezaApp": {
         "client" : {
             "home": {
-                "title": "Clients",
+                "title": "Klijenti",
                 "createLabel": "Kreiraj novi Client",
                 "createOrEditLabel": "Kreirajte ili izmenite Client"
             },
@@ -14,13 +14,13 @@
                 "question": "Da li ste sigurni da želite da obrišete Client pod nazivom {{ id }}?"
             },
             "detail": {
-                "title": "Client"
+                "title": "Klijent"
             },
-            "name": "Name",
-            "address": "Address",
-            "phone": "Phone",
+            "name": "Ime",
+            "address": "Adresa",
+            "phone": "Telefon",
             "email": "Email",
-            "city": "City"
+            "city": "Grad"
         }
     }
 }

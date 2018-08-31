@@ -17,7 +17,6 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="brezaApp.city.name">Name</span></th>
             <th><span jhiTranslate="brezaApp.city.zipCode">Zip Code</span></th>
-            <th><span jhiTranslate="brezaApp.city.country">Country</span></th>
             <th></th>
             </tr>
             </thead>
@@ -26,7 +25,6 @@
                 <td><a [routerLink]="['/city', city.id, 'view' ]">{{city.id}}</a></td>
                 <td>{{city.name}}</td>
                 <td>{{city.zipCode}}</td>
-                <td>{{city.country}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

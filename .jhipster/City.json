@@ -12,12 +12,8 @@
             "fieldName": "zipCode",
             "fieldType": "String",
             "fieldValidateRules": []
-        },
-        {
-            "fieldName": "country",
-            "fieldType": "String",
-            "fieldValidateRules": []
         }
+       
     ],
     "changelogDate": "20180830083935",
     "dto": "no",

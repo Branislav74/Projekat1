@@ -45,9 +45,6 @@ public class CityResourceIntTest {
     private static final String DEFAULT_ZIP_CODE = "AAAAAAAAAA";
     private static final String UPDATED_ZIP_CODE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_COUNTRY = "AAAAAAAAAA";
-    private static final String UPDATED_COUNTRY = "BBBBBBBBBB";
-
     @Autowired
     private CityRepository cityRepository;
 
@@ -88,8 +85,7 @@ public class CityResourceIntTest {
     public static City createEntity(EntityManager em) {
         City city = new City()
             .name(DEFAULT_NAME)
-            .zipCode(DEFAULT_ZIP_CODE)
-            .country(DEFAULT_COUNTRY);
+            .zipCode(DEFAULT_ZIP_CODE);
         return city;
     }
 
@@ -115,7 +111,6 @@ public class CityResourceIntTest {
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testCity.getZipCode()).isEqualTo(DEFAULT_ZIP_CODE);
-        assertThat(testCity.getCountry()).isEqualTo(DEFAULT_COUNTRY);
     }
 
     @Test
@@ -149,8 +144,7 @@ public class CityResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(city.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].zipCode").value(hasItem(DEFAULT_ZIP_CODE.toString())))
-            .andExpect(jsonPath("$.[*].country").value(hasItem(DEFAULT_COUNTRY.toString())));
+            .andExpect(jsonPath("$.[*].zipCode").value(hasItem(DEFAULT_ZIP_CODE.toString())));
     }
     
 
@@ -166,8 +160,7 @@ public class CityResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(city.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.zipCode").value(DEFAULT_ZIP_CODE.toString()))
-            .andExpect(jsonPath("$.country").value(DEFAULT_COUNTRY.toString()));
+            .andExpect(jsonPath("$.zipCode").value(DEFAULT_ZIP_CODE.toString()));
     }
     @Test
     @Transactional
@@ -191,8 +184,7 @@ public class CityResourceIntTest {
         em.detach(updatedCity);
         updatedCity
             .name(UPDATED_NAME)
-            .zipCode(UPDATED_ZIP_CODE)
-            .country(UPDATED_COUNTRY);
+            .zipCode(UPDATED_ZIP_CODE);
 
         restCityMockMvc.perform(put("/api/cities")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -205,7 +197,6 @@ public class CityResourceIntTest {
         City testCity = cityList.get(cityList.size() - 1);
         assertThat(testCity.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testCity.getZipCode()).isEqualTo(UPDATED_ZIP_CODE);
-        assertThat(testCity.getCountry()).isEqualTo(UPDATED_COUNTRY);
     }
 
     @Test

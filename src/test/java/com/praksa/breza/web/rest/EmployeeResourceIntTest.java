@@ -45,9 +45,6 @@ public class EmployeeResourceIntTest {
     private static final String DEFAULT_LAST_NAME = "AAAAAAAAAA";
     private static final String UPDATED_LAST_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_WORK_PLACE = "AAAAAAAAAA";
-    private static final String UPDATED_WORK_PLACE = "BBBBBBBBBB";
-
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -88,8 +85,7 @@ public class EmployeeResourceIntTest {
     public static Employee createEntity(EntityManager em) {
         Employee employee = new Employee()
             .firstName(DEFAULT_FIRST_NAME)
-            .lastName(DEFAULT_LAST_NAME)
-            .workPlace(DEFAULT_WORK_PLACE);
+            .lastName(DEFAULT_LAST_NAME);
         return employee;
     }
 
@@ -115,7 +111,6 @@ public class EmployeeResourceIntTest {
         Employee testEmployee = employeeList.get(employeeList.size() - 1);
         assertThat(testEmployee.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testEmployee.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
-        assertThat(testEmployee.getWorkPlace()).isEqualTo(DEFAULT_WORK_PLACE);
     }
 
     @Test
@@ -149,8 +144,7 @@ public class EmployeeResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(employee.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
-            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
-            .andExpect(jsonPath("$.[*].workPlace").value(hasItem(DEFAULT_WORK_PLACE.toString())));
+            .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())));
     }
     
 
@@ -166,8 +160,7 @@ public class EmployeeResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(employee.getId().intValue()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
-            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
-            .andExpect(jsonPath("$.workPlace").value(DEFAULT_WORK_PLACE.toString()));
+            .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()));
     }
     @Test
     @Transactional
@@ -191,8 +184,7 @@ public class EmployeeResourceIntTest {
         em.detach(updatedEmployee);
         updatedEmployee
             .firstName(UPDATED_FIRST_NAME)
-            .lastName(UPDATED_LAST_NAME)
-            .workPlace(UPDATED_WORK_PLACE);
+            .lastName(UPDATED_LAST_NAME);
 
         restEmployeeMockMvc.perform(put("/api/employees")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -205,7 +197,6 @@ public class EmployeeResourceIntTest {
         Employee testEmployee = employeeList.get(employeeList.size() - 1);
         assertThat(testEmployee.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testEmployee.getLastName()).isEqualTo(UPDATED_LAST_NAME);
-        assertThat(testEmployee.getWorkPlace()).isEqualTo(UPDATED_WORK_PLACE);
     }
 
     @Test

@@ -30,10 +30,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="work_place" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="position_id" type="bigint">
                 <constraints nullable="true" />
             </column>

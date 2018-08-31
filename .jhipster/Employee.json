@@ -19,12 +19,8 @@
             "fieldName": "lastName",
             "fieldType": "String",
             "fieldValidateRules": []
-        },
-        {
-            "fieldName": "workPlace",
-            "fieldType": "String",
-            "fieldValidateRules": []
         }
+       
     ],
     "changelogDate": "20180830124345",
     "dto": "no",

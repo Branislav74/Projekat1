@@ -26,9 +26,6 @@ public class Employee implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "work_place")
-    private String workPlace;
-
     @ManyToOne
     @JsonIgnoreProperties("")
     private Position position;
@@ -66,19 +63,6 @@ public class Employee implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getWorkPlace() {
-        return workPlace;
-    }
-
-    public Employee workPlace(String workPlace) {
-        this.workPlace = workPlace;
-        return this;
-    }
-
-    public void setWorkPlace(String workPlace) {
-        this.workPlace = workPlace;
     }
 
     public Position getPosition() {
@@ -121,7 +105,6 @@ public class Employee implements Serializable {
             "id=" + getId() +
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
-            ", workPlace='" + getWorkPlace() + "'" +
             "}";
     }
 }

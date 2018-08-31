@@ -25,6 +25,13 @@
                         [(ngModel)]="employee.workPlace" />
                 </div>
 
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="brezaApp.employee.position" for="field_position">Position</label>
+                    <select class="form-control" id="field_position" name="position" [(ngModel)]="employee.position" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="positionOption.id === employee.position?.id ? employee.position : positionOption" *ngFor="let positionOption of positions; trackBy: trackPositionById">{{positionOption.name}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

@@ -18,7 +18,8 @@
             },
             "firstName": "First Name",
             "lastName": "Last Name",
-            "workPlace": "Work Place"
+            "workPlace": "Work Place",
+            "position": "Position"
         }
     }
 }

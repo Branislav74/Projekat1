@@ -11,6 +11,7 @@ import { ArticleDetailComponent } from './article-detail.component';
 import { ArticleUpdateComponent } from './article-update.component';
 import { ArticleDeletePopupComponent } from './article-delete-dialog.component';
 import { IArticle } from 'app/shared/model/article.model';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @Injectable({ providedIn: 'root' })
 export class ArticleResolve implements Resolve<IArticle> {

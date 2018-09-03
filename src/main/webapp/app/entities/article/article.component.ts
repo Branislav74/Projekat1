@@ -6,6 +6,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IArticle } from 'app/shared/model/article.model';
 import { Principal } from 'app/core';
 import { ArticleService } from './article.service';
+import { LocalDataSource } from '../../../../../../node_modules/ng2-smart-table';
 
 @Component({
     selector: 'jhi-article',
@@ -13,44 +14,32 @@ import { ArticleService } from './article.service';
 })
 export class ArticleComponent implements OnInit, OnDestroy {
     articles: IArticle[];
+
     currentAccount: any;
     eventSubscriber: Subscription;
+    data: LocalDataSource;
     settings = {
         columns: {
             id: {
                 title: 'ID'
             },
             name: {
-                title: 'Full Name'
+                title: 'Name'
             },
-            username: {
-                title: 'User Name'
+            articleNumber: {
+                title: 'Article number'
             },
-            email: {
-                title: 'Email'
+            price: {
+                title: 'Price'
+            },
+            availableAmount: {
+                title: 'Available amount'
+            },
+            type: {
+                title: 'Type'
             }
         }
     };
-    data = [
-        {
-            id: 1,
-            name: 'Leanne Graham',
-            username: 'Bret',
-            email: 'Sincere@april.biz'
-        },
-        {
-            id: 2,
-            name: 'Ervin Howell',
-            username: 'Antonette',
-            email: 'Shanna@melissa.tv'
-        },
-        {
-            id: 11,
-            name: 'Nicholas DuBuque',
-            username: 'Nicholas.Stanton',
-            email: 'Rey.Padberg@rosamond.biz'
-        }
-    ];
 
     constructor(
         private articleService: ArticleService,
@@ -63,6 +52,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this.articleService.query().subscribe(
             (res: HttpResponse<IArticle[]>) => {
                 this.articles = res.body;
+                this.data = new LocalDataSource(res.body);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

@@ -11,6 +11,7 @@
     <include file="config/liquibase/changelog/20180830124345_added_entity_Employee.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180830151053_added_entity_Position.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180831081638_added_entity_Type.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180904082258_added_entity_Vehicle.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180830130458_added_entity_constraints_Client.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180830124345_added_entity_constraints_Employee.xml" relativeToChangelogFile="false"/>

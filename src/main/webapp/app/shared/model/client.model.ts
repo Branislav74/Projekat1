@@ -7,6 +7,7 @@ export interface IClient {
     phone?: string;
     email?: string;
     city?: ICity;
+    clientCity?: string;
 }
 
 export class Client implements IClient {

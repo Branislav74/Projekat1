@@ -21,7 +21,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
     settings = {
         columns: {
             id: {
-                title: 'ID'
+                title: 'ID',
+                editable: false
             },
             name: {
                 title: 'Name'

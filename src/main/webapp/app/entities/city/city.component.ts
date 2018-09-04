@@ -7,6 +7,7 @@ import { ICity } from 'app/shared/model/city.model';
 import { Principal } from 'app/core';
 import { CityService } from './city.service';
 import { LocalDataSource } from '../../../../../../node_modules/ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-city',
@@ -18,6 +19,26 @@ export class CityComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     settings = {
+        add: { addButtonContent: 'Create a new Article' },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                }
+            ]
+        },
+        mode: 'external',
         columns: {
             id: {
                 title: 'ID'
@@ -35,7 +56,8 @@ export class CityComponent implements OnInit, OnDestroy {
         private cityService: CityService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -70,5 +92,19 @@ export class CityComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    addNew() {
+        this.router.navigate(['article/new']);
+    }
+    onCustom(event) {
+        console.log(event);
+        if (event.action === 'view') {
+            this.router.navigate(['article/' + event.data.id + '/view']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['article/' + event.data.id + '/edit']);
+        } else {
+            console.log('Kliknuli smo delete');
+            this.router.navigate([{ outlets: { popup: 'article/' + event.data.id + '/delete' } }]);
+        }
     }
 }

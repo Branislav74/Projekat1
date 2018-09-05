@@ -19,7 +19,9 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     settings = {
-        add: { addButtonContent: 'Create a new Article' },
+        add: {
+            addButtonContent: 'Create a new Article'
+        },
         actions: {
             edit: false,
             delete: false,
@@ -43,13 +45,16 @@ export class EmployeeComponent implements OnInit, OnDestroy {
             id: {
                 title: 'ID'
             },
-            firstName: {
-                title: 'FirstName'
+            // firstName: {
+            //     title: 'FirstName'
+            // },
+            // lastName: {
+            //     title: 'LastName'
+            // },
+            fullName: {
+                title: 'Full Name'
             },
-            lastName: {
-                title: 'LastName'
-            },
-            position: {
+            employeePosition: {
                 title: 'Position'
             }
         }
@@ -67,7 +72,12 @@ export class EmployeeComponent implements OnInit, OnDestroy {
         this.employeeService.query().subscribe(
             (res: HttpResponse<IEmployee[]>) => {
                 this.employees = res.body;
-                this.data = new LocalDataSource(res.body);
+                this.data = new LocalDataSource();
+                for (const employee of res.body) {
+                    employee.employeePosition = employee.position.name;
+                    employee.fullName = employee.firstName + ' ' + employee.lastName;
+                    this.data.add(employee);
+                }
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );

@@ -78,7 +78,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
                 this.articles = res.body;
                 this.data = new LocalDataSource();
                 for (const article of res.body) {
-                    article.articleType = article.type.name;
+                    article.articleType = article.type ? article.type.name : '';
                     this.data.add(article);
                 }
             },

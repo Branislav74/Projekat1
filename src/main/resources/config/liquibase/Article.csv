@@ -1,6 +1,6 @@
 id;name;article_number;price;available_amount;type_id
 1;mleko;123;112.5;5400;1
-2;cokolada;125;150;2500;4
+2;cokolada;125;150;2500;null
 3;limun;126;249.5;1250;2
 4;so;127;59;256;4
 5;jabuka;128;119;5600;2

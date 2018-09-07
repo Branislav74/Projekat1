@@ -7,6 +7,7 @@ import { IType } from 'app/shared/model/type.model';
 import { Principal } from 'app/core';
 import { TypeService } from './type.service';
 import { LocalDataSource } from '../../../../../../node_modules/ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-type',
@@ -18,6 +19,28 @@ export class TypeComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     settings = {
+        add: {
+            addButtonContent: 'Create a new Type'
+        },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                }
+            ]
+        },
+        mode: 'external',
         columns: {
             id: {
                 title: 'ID'
@@ -32,7 +55,8 @@ export class TypeComponent implements OnInit, OnDestroy {
         private typeService: TypeService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -67,5 +91,18 @@ export class TypeComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    addNew() {
+        this.router.navigate(['type/new']);
+    }
+    onCustom(event) {
+        console.log(event);
+        if (event.action === 'view') {
+            this.router.navigate(['type/' + event.data.id + '/view']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['type/' + event.data.id + '/edit']);
+        } else {
+            this.router.navigate([{ outlets: { popup: 'type/' + event.data.id + '/delete' } }]);
+        }
     }
 }

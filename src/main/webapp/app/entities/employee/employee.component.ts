@@ -20,7 +20,7 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     data: LocalDataSource;
     settings = {
         add: {
-            addButtonContent: 'Create a new Article'
+            addButtonContent: 'Create a new Employee'
         },
         actions: {
             edit: false,
@@ -107,17 +107,17 @@ export class EmployeeComponent implements OnInit, OnDestroy {
         this.jhiAlertService.error(errorMessage, null, null);
     }
     addNew() {
-        this.router.navigate(['article/new']);
+        this.router.navigate(['employee/new']);
     }
     onCustom(event) {
         console.log(event);
         if (event.action === 'view') {
-            this.router.navigate(['article/' + event.data.id + '/view']);
+            this.router.navigate(['employee/' + event.data.id + '/view']);
         } else if (event.action === 'edit') {
-            this.router.navigate(['article/' + event.data.id + '/edit']);
+            this.router.navigate(['employee/' + event.data.id + '/edit']);
         } else {
             console.log('Kliknuli smo delete');
-            this.router.navigate([{ outlets: { popup: 'article/' + event.data.id + '/delete' } }]);
+            this.router.navigate([{ outlets: { popup: 'employee/' + event.data.id + '/delete' } }]);
         }
     }
 }

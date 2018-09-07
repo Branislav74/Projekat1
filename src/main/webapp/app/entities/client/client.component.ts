@@ -19,7 +19,7 @@ export class ClientComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     settings = {
-        add: { addButtonContent: 'Create a new Article' },
+        add: { addButtonContent: 'Create a new Client' },
         actions: {
             edit: false,
             delete: false,
@@ -107,17 +107,17 @@ export class ClientComponent implements OnInit, OnDestroy {
         this.jhiAlertService.error(errorMessage, null, null);
     }
     addNew() {
-        this.router.navigate(['article/new']);
+        this.router.navigate(['client/new']);
     }
     onCustom(event) {
         console.log(event);
         if (event.action === 'view') {
-            this.router.navigate(['article/' + event.data.id + '/view']);
+            this.router.navigate(['client/' + event.data.id + '/view']);
         } else if (event.action === 'edit') {
-            this.router.navigate(['article/' + event.data.id + '/edit']);
+            this.router.navigate(['client/' + event.data.id + '/edit']);
         } else {
             console.log('Kliknuli smo delete');
-            this.router.navigate([{ outlets: { popup: 'article/' + event.data.id + '/delete' } }]);
+            this.router.navigate([{ outlets: { popup: 'client/' + event.data.id + '/delete' } }]);
         }
     }
 }

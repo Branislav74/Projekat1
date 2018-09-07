@@ -7,6 +7,7 @@ import { IPosition } from 'app/shared/model/position.model';
 import { Principal } from 'app/core';
 import { PositionService } from './position.service';
 import { LocalDataSource } from '../../../../../../node_modules/ng2-smart-table';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-position',
@@ -18,6 +19,28 @@ export class PositionComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     data: LocalDataSource;
     settings = {
+        add: {
+            addButtonContent: 'Create a new Position'
+        },
+        actions: {
+            edit: false,
+            delete: false,
+            custom: [
+                {
+                    name: 'view',
+                    title: 'View '
+                },
+                {
+                    name: 'edit',
+                    title: 'Edit '
+                },
+                {
+                    name: 'delete',
+                    title: 'Delete '
+                }
+            ]
+        },
+        mode: 'external',
         columns: {
             id: {
                 title: 'ID'
@@ -32,7 +55,8 @@ export class PositionComponent implements OnInit, OnDestroy {
         private positionService: PositionService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private principal: Principal,
+        private router: Router
     ) {}
 
     loadAll() {
@@ -67,5 +91,19 @@ export class PositionComponent implements OnInit, OnDestroy {
 
     private onError(errorMessage: string) {
         this.jhiAlertService.error(errorMessage, null, null);
+    }
+    addNew() {
+        this.router.navigate(['position/new']);
+    }
+    onCustom(event) {
+        console.log(event);
+        if (event.action === 'view') {
+            this.router.navigate(['position/' + event.data.id + '/view']);
+        } else if (event.action === 'edit') {
+            this.router.navigate(['position/' + event.data.id + '/edit']);
+        } else {
+            console.log('Kliknuli smo delete');
+            this.router.navigate([{ outlets: { popup: 'position/' + event.data.id + '/delete' } }]);
+        }
     }
 }

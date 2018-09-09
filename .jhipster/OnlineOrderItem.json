@@ -18,7 +18,19 @@
             "relationshipType": "many-to-one",
             "relationshipName": "onlineOrder",
             "otherEntityName": "onlineOrder",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "relationshipValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "article",
+            "otherEntityName": "article",
+            "otherEntityField": "name",
+            "relationshipValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20180909124546",
